@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Client {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -18,10 +18,10 @@ public class Client {
     private String address;
     private int phoneNumber;
     private Date created;
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "user")
     private List<Reservation> reservations;
 
-    public Client() {}
+    public User() {}
 
     public int getId() {
         return id;

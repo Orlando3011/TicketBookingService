@@ -10,7 +10,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @ManyToOne
-    private Client client;
+    private User user;
     @OneToMany(mappedBy = "reservation")
     private List<Ticket> tickets;
     private Date dateCreated;
@@ -25,12 +25,12 @@ public class Reservation {
         this.id = id;
     }
 
-    public Client getClient() {
-        return client;
+    public User getUser() {
+        return user;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<Ticket> getTickets() {
