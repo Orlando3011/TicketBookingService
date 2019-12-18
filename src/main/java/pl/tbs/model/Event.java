@@ -17,6 +17,7 @@ public class Event {
     private List<Ticket> tickets;
     private Date date;
     private String place;
+    private EventType eventType;
 
     public Event() {}
 
@@ -82,5 +83,13 @@ public class Event {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    public EventType getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(EventType eventType) {
+        this.eventType = eventType;
     }
 }
