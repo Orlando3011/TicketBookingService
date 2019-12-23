@@ -6,6 +6,7 @@ import pl.tbs.model.User;
 import pl.tbs.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -33,6 +34,7 @@ public class UserController {
     @PostMapping("/users")
     public void addUser(@RequestBody User user) {
         user.setReservations(new ArrayList<>());
+        user.setCreated(new Date());
         users.save(user);
     }
 

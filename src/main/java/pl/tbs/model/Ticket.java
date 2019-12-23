@@ -7,13 +7,14 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private float price;
     private String seat;
     private String description;
     @ManyToOne
     private Event event;
     @ManyToOne
     private Reservation reservation;
+    private boolean isDiscounted;
+    private float price;
 
     public Ticket() {}
 
@@ -23,14 +24,6 @@ public class Ticket {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 
     public String getSeat() {
@@ -63,5 +56,21 @@ public class Ticket {
 
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
+    }
+
+    public boolean isDiscounted() {
+        return isDiscounted;
+    }
+
+    public void setDiscounted(boolean discounted) {
+        isDiscounted = discounted;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }

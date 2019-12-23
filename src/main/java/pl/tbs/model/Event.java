@@ -13,11 +13,11 @@ public class Event {
     private String description;
     private int ticketsAvailable;
     private int ticketsTotal;
-    @OneToMany(mappedBy = "event")
-    private List<Ticket> tickets;
     private Date date;
     private String place;
-    private EventType eventType;
+    private String eventType;
+    private float normalTicketPrice;
+    private float discountTicketPrice;
 
     public Event() {}
 
@@ -61,14 +61,6 @@ public class Event {
         this.ticketsTotal = ticketsTotal;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -85,11 +77,27 @@ public class Event {
         this.place = place;
     }
 
-    public EventType getEventType() {
+    public String getEventType() {
         return eventType;
     }
 
-    public void setEventType(EventType eventType) {
+    public void setEventType(String eventType) {
         this.eventType = eventType;
+    }
+
+    public float getNormalTicketPrice() {
+        return normalTicketPrice;
+    }
+
+    public void setNormalTicketPrice(float normalTicketPrice) {
+        this.normalTicketPrice = normalTicketPrice;
+    }
+
+    public float getDiscountTicketPrice() {
+        return discountTicketPrice;
+    }
+
+    public void setDiscountTicketPrice(float discountTicketPrice) {
+        this.discountTicketPrice = discountTicketPrice;
     }
 }
