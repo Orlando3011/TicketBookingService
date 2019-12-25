@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     private UserRepository users;
 
-    @GetMapping("/users")
+    @GetMapping("/users/{username}")
     public List<User> findUserByUsername(@RequestParam(value = "username", required = false) String username) {
         if(username == null) {
             return users.findAll();

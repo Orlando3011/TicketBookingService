@@ -94,4 +94,12 @@ public class User {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+
+    public void addReservation(Reservation reservation) {
+        this.reservations.add(reservation);
+    }
+
+    public void deleteReservation(Reservation reservation) {
+        this.reservations.remove(reservation);
+    }
 }
