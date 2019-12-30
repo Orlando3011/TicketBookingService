@@ -14,16 +14,9 @@ public class UserController {
     @Autowired
     private UserRepository users;
 
-    @GetMapping("/users/{username}")
-    public List<User> findUserByUsername(@RequestParam(value = "username", required = false) String username) {
-        if(username == null) {
+    @GetMapping("/users")
+    public List<User> findUserByUsername() {
             return users.findAll();
-        }
-        else {
-            List<User> foundUser = new ArrayList<>();
-            foundUser.add(users.findByUsername(username));
-            return foundUser;
-        }
     }
 
     @GetMapping("/users/{userId}")
@@ -48,5 +41,4 @@ public class UserController {
         user.setId(id);
         users.save(user);
     }
-
 }
