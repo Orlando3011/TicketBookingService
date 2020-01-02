@@ -2,6 +2,7 @@ package pl.tbs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.tbs.exception.NoTicketsLeftException;
 import pl.tbs.model.Event;
 import pl.tbs.model.Reservation;
 import pl.tbs.model.Ticket;
@@ -26,11 +27,15 @@ public class TicketController {
     }
 
     @PostMapping("/users/{userId}/reservations/{reservationId}/events/{eventId}/tickets")
-    public void addTicket(@PathVariable("reservationId") int reservationId, @PathVariable("eventId") int eventId, @RequestBody Ticket ticket) {
+    public void addTicket(@PathVariable("reservationId") int reservationId, @PathVariable("eventId") int eventId, @RequestBody Ticket ticket) throws NoTicketsLeftException {
 
         Event event = events.findById(eventId);
+        if(event.getTicketsAvailable() == 0) {
+            throw new NoTicketsLeftException();
+        }
         ticket.setEvent(event);
         event.setTicketsAvailable(event.getTicketsAvailable() - 1);
+
         if(ticket.isDiscounted()) {
             ticket.setPrice(event.getDiscountTicketPrice());
         }
