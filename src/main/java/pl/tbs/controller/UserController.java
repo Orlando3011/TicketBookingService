@@ -27,7 +27,6 @@ public class UserController {
     @PostMapping("/users")
     public void addUser(@RequestBody User user) {
         user.setReservations(new ArrayList<>());
-        user.setCreated(new Date());
         users.save(user);
     }
 

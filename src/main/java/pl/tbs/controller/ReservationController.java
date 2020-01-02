@@ -8,6 +8,7 @@ import pl.tbs.model.User;
 import pl.tbs.repository.ReservationRepository;
 import pl.tbs.repository.UserRepository;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,13 +32,10 @@ public class ReservationController {
 
     @PostMapping("/reservations/users/{userId}")
     public void addReservation(@PathVariable("userId") int id, @RequestBody Reservation reservation) {
+        User user = users.findById(id);
+        reservation.setUser(user);
         reservation.setTickets(new ArrayList<>());
-        reservation.setDateCreated(new Date());
         reservations.save(reservation);
-
-         User user = users.findById(id);
-         user.addReservation(reservation);
-         users.save(user);
     }
 
     @DeleteMapping("/reservations/{reservationId}/users/{userId}")

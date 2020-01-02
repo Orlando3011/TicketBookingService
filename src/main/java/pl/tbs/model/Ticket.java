@@ -1,8 +1,12 @@
 package pl.tbs.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,14 +16,15 @@ public class Ticket {
     @ManyToOne
     private Event event;
     @ManyToOne
+    @JsonIgnore
     private Reservation reservation;
-    private boolean isDiscounted;
+    private boolean discounted;
     private float price;
 
     public Ticket() {}
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -27,7 +32,7 @@ public class Ticket {
     }
 
     public String getSeat() {
-        return seat;
+        return this.seat;
     }
 
     public void setSeat(String seat) {
@@ -35,7 +40,7 @@ public class Ticket {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -43,7 +48,7 @@ public class Ticket {
     }
 
     public Event getEvent() {
-        return event;
+        return this.event;
     }
 
     public void setEvent(Event event) {
@@ -51,26 +56,26 @@ public class Ticket {
     }
 
     public Reservation getReservation() {
-        return reservation;
+        return this.reservation;
     }
 
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
     }
 
-    public boolean isDiscounted() {
-        return isDiscounted;
-    }
-
-    public void setDiscounted(boolean discounted) {
-        isDiscounted = discounted;
-    }
-
     public float getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public boolean isDiscounted() {
+        return discounted;
+    }
+
+    public void setDiscounted(boolean discounted) {
+        this.discounted = discounted;
     }
 }

@@ -1,7 +1,6 @@
 package pl.tbs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.tbs.model.Event;
 import pl.tbs.model.Reservation;
@@ -22,19 +21,26 @@ public class TicketController {
     private EventRepository events;
 
     @GetMapping("/users/{userId}/reservations/{reservationId}/tickets")
-    public List<Ticket> showTicketsInReservation(@RequestParam("reservationId") int id) {
+    public List<Ticket> showTicketsInReservation(@PathVariable("reservationId") int id) {
         return reservations.findById(id).getTickets();
     }
 
     @PostMapping("/users/{userId}/reservations/{reservationId}/events/{eventId}/tickets")
-    public void addTicket(@RequestParam("reservationId") int reservationId, @RequestParam("eventId") int eventId, @RequestBody Ticket ticket) {
+    public void addTicket(@PathVariable("reservationId") int reservationId, @PathVariable("eventId") int eventId, @RequestBody Ticket ticket) {
 
         Event event = events.findById(eventId);
         ticket.setEvent(event);
         event.setTicketsAvailable(event.getTicketsAvailable() - 1);
+        if(ticket.isDiscounted()) {
+            ticket.setPrice(event.getDiscountTicketPrice());
+        }
+        else {
+            ticket.setPrice(event.getNormalTicketPrice());
+        }
+
 
         Reservation reservation = reservations.findById(reservationId);
-        reservation.addTicket(ticket);
+        ticket.setReservation(reservation);
         tickets.save(ticket);
         reservations.save(reservation);
         events.save(event);

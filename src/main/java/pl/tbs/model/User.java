@@ -1,11 +1,15 @@
 package pl.tbs.model;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +21,7 @@ public class User {
     private String familyName;
     private String address;
     private int phoneNumber;
+    @CreatedDate
     private Date created;
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservations;

@@ -1,20 +1,27 @@
 package pl.tbs.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @ManyToOne
+    @JsonIgnore
     private User user;
     private String description;
     @OneToMany(mappedBy = "reservation")
     private List<Ticket> tickets;
-    private Date dateCreated;
+    @CreatedDate
+    private Date created;
 
     public Reservation() {}
 
@@ -42,12 +49,12 @@ public class Reservation {
         this.tickets = tickets;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public void addTicket(Ticket ticket) {
