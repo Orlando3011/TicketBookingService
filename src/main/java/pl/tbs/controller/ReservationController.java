@@ -12,19 +12,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Controller
+@RestController
 public class ReservationController {
     @Autowired
     UserRepository users;
     @Autowired
     ReservationRepository reservations;
 
-    @GetMapping("/users/{userId}/reservations")
-    public List<Reservation> showUserReservations(@RequestParam("userId") int id) {
-        return  users.findById(id).getReservations();
+    @GetMapping("/reservations")
+    public List<Reservation> listReservations() {
+        return reservations.findAll();
     }
 
-    @PostMapping("/users/{userId}/reservations")
+    @GetMapping("/reservations/users/{userId}")
+    public List<Reservation> showUserReservations(@PathVariable("userId") int id) {
+        return reservations.findByUser(users.findById(id));
+    }
+
+    @PostMapping("/reservations/users/{userId}")
     public void addReservation(@PathVariable("userId") int id, @RequestBody Reservation reservation) {
         reservation.setTickets(new ArrayList<>());
         reservation.setDateCreated(new Date());
@@ -35,7 +40,7 @@ public class ReservationController {
          users.save(user);
     }
 
-    @DeleteMapping("/users/{userId}/reservations/{reservationId}")
+    @DeleteMapping("/reservations/{reservationId}/users/{userId}")
     public void removeReservation(@PathVariable("userId") int userId, @PathVariable("reservationId") int reservationId) {
         User user = users.findById(userId);
         Reservation reservation = reservations.findById(reservationId);

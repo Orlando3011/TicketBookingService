@@ -12,7 +12,7 @@ import pl.tbs.repository.TicketRepository;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class TicketController {
     @Autowired
     private TicketRepository tickets;

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import pl.tbs.model.Event;
 import pl.tbs.model.Reservation;
 import pl.tbs.model.Ticket;
@@ -15,7 +16,7 @@ import pl.tbs.repository.UserRepository;
 
 import java.util.*;
 
-@Controller
+@RestController
 public class RecommendationController {
     @Autowired
     TicketRepository tickets;

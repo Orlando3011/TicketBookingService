@@ -22,7 +22,7 @@ public class EventController {
         return events.findById(id);
     }
 
-    @GetMapping("/events/{eventType}")
+    @GetMapping("/events/type")
     public List<Event> findEventsByType(@RequestParam("eventType") String type) {
         return events.findByEventType(type);
     }

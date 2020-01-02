@@ -11,6 +11,7 @@ public class Reservation {
     private int id;
     @ManyToOne
     private User user;
+    private String description;
     @OneToMany(mappedBy = "reservation")
     private List<Ticket> tickets;
     private Date dateCreated;
@@ -55,5 +56,13 @@ public class Reservation {
 
     public void removeTicket(Ticket ticket) {
         this.tickets.remove(ticket);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
