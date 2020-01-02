@@ -18,7 +18,7 @@ public class EventController {
     }
 
     @GetMapping("/events/{eventId}")
-    public Event findEventById(@RequestParam("eventId") int id) {
+    public Event findEventById(@PathVariable("eventId") int id) {
         return events.findById(id);
     }
 
@@ -34,13 +34,13 @@ public class EventController {
     }
 
     @PutMapping("/events/{eventId}")
-    public void editEvent(@RequestParam("eventId") int id, @RequestBody Event event) {
+    public void editEvent(@PathVariable("eventId") int id, @RequestBody Event event) {
         event.setId(id);
         events.save(event);
     }
 
     @DeleteMapping("events/{eventId}")
-    public void deleteEvent(@RequestParam("eventId") int id) {
+    public void deleteEvent(@PathVariable("eventId") int id) {
         events.delete(events.findById(id));
     }
 }

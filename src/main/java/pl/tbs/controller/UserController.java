@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}")
-    public User findUserById(@RequestParam("userId") int id) {
+    public User findUserById(@PathVariable("userId") int id) {
         return  users.findById(id);
     }
 
@@ -32,12 +32,12 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{userId}")
-    public void deleteClient(@RequestParam(value = "userId") int id) {
+    public void deleteClient(@PathVariable(value = "userId") int id) {
         users.delete(users.findById(id));
     }
 
     @PutMapping("/users/{usersId}")
-    public void updateUser(@RequestParam(value = "userId") int id, @RequestBody User user) {
+    public void updateUser(@PathVariable(value = "userId") int id, @RequestBody User user) {
         user.setId(id);
         users.save(user);
     }

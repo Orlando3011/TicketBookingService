@@ -41,7 +41,7 @@ public class TicketController {
     }
 
     @DeleteMapping("/users/{userId}/reservations/{reservationId}/events/{eventId}/tickets/{ticketId}")
-    public void removeTicket(@RequestParam("reservationId") int reservationId, @RequestParam("ticketId") int ticketId, @RequestParam("eventId") int eventId) {
+    public void removeTicket(@PathVariable("reservationId") int reservationId, @PathVariable("ticketId") int ticketId, @PathVariable("eventId") int eventId) {
         Event event = events.findById(eventId);
         event.setTicketsAvailable(event.getTicketsAvailable() + 1);
         Reservation reservation = reservations.findById(reservationId);

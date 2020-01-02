@@ -3,6 +3,7 @@ package pl.tbs.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.tbs.model.Event;
 import pl.tbs.model.Reservation;
@@ -24,7 +25,7 @@ public class RecommendationController {
     EventRepository events;
 
     @GetMapping("/users/{userId}/genreRecommendations")
-    public List<Event> listEventsMatchingTypes(@RequestParam("userId") int userId) {
+    public List<Event> listEventsMatchingTypes(@PathVariable("userId") int userId) {
         List<Event> eventsVisited = getEventsVisitedByUser(users.findById(userId));
         List<Event> eventsRecommended = events.findByEventType(getBestGenre(eventsVisited));
         eventsRecommended.removeIf(eventsVisited::contains);

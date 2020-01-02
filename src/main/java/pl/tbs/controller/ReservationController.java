@@ -25,7 +25,7 @@ public class ReservationController {
     }
 
     @PostMapping("/users/{userId}/reservations")
-    public void addReservation(@RequestParam("userId") int id, @RequestBody Reservation reservation) {
+    public void addReservation(@PathVariable("userId") int id, @RequestBody Reservation reservation) {
         reservation.setTickets(new ArrayList<>());
         reservation.setDateCreated(new Date());
         reservations.save(reservation);
@@ -36,7 +36,7 @@ public class ReservationController {
     }
 
     @DeleteMapping("/users/{userId}/reservations/{reservationId}")
-    public void removeReservation(@RequestParam("userId") int userId, @RequestParam("reservationId") int reservationId) {
+    public void removeReservation(@PathVariable("userId") int userId, @PathVariable("reservationId") int reservationId) {
         User user = users.findById(userId);
         Reservation reservation = reservations.findById(reservationId);
         user.deleteReservation(reservation);
