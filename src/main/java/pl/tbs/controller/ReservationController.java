@@ -1,16 +1,13 @@
 package pl.tbs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pl.tbs.model.Reservation;
 import pl.tbs.model.User;
 import pl.tbs.repository.ReservationRepository;
 import pl.tbs.repository.UserRepository;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController

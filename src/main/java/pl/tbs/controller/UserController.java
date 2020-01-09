@@ -6,7 +6,6 @@ import pl.tbs.model.User;
 import pl.tbs.repository.UserRepository;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
