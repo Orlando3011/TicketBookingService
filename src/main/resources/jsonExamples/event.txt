@@ -1,0 +1,12 @@
+{
+    "id": 2,                                            // this is generated automatically
+    "name": "Joker",
+    "description": "I don't know, whatever",
+    "ticketsAvailable": 300,                            // this is generated automatically
+    "ticketsTotal": 300,
+    "date": null,
+    "place": "Multikino",                               //Important part for recommendations
+    "eventType": "Thriller",                            //Important part for recommendations
+    "normalTicketPrice": 15.0,
+    "discountTicketPrice": 12.0
+]

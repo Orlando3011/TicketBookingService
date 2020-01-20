@@ -1,0 +1,11 @@
+{
+    "id": 1,                                        // this is generated automatically
+    "username": "mwasik",
+    "password": "1234",
+    "firstName": "Michał",
+    "familyName": "Wąsik",
+    "address": "Kielce",
+    "phoneNumber": 2137,
+    "created": "2020-01-20T15:26:45.783+0000",      // this is generated automatically
+    "reservations": []                              // this is generated automatically
+}

@@ -1,0 +1,8 @@
+{
+    "id": 4,                                    // this is generated automatically
+    "seat": "C23",
+    "description": null,
+    "event": {},                                // this is generated automatically}
+    "discounted": true,
+    "price": 12.0                               // this is generated automatically
+}
