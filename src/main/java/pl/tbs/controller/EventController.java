@@ -7,6 +7,7 @@ import pl.tbs.repository.EventRepository;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class EventController {
     @Autowired

@@ -10,6 +10,7 @@ import pl.tbs.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class ReservationController {
     @Autowired

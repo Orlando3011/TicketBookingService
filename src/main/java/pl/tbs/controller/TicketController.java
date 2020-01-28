@@ -10,6 +10,7 @@ import pl.tbs.service.TicketService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class TicketController {
     @Autowired
