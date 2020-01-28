@@ -1,6 +1,7 @@
 {
     "id": 1,                                        // this is generated automatically
     "username": "mwasik",
+    "role":"admin",                                 // "admin" or "user"
     "password": "1234",
     "firstName": "Michał",
     "familyName": "Wąsik",

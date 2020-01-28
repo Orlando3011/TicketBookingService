@@ -2,6 +2,7 @@ package pl.tbs.model;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import pl.tbs.exception.WrongRoleException;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,6 +17,8 @@ public class User {
     private int id;
     @NotNull
     private String username;
+    @NotNull
+    private String role;
     private String password;
     private String firstName;
     private String familyName;
@@ -106,5 +109,16 @@ public class User {
 
     public void deleteReservation(Reservation reservation) {
         this.reservations.remove(reservation);
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) throws WrongRoleException {
+        if(role.equals("user") || role.equals("admin")) {
+            throw new WrongRoleException();
+        }
+        this.role = role;
     }
 }
