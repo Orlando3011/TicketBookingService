@@ -117,8 +117,8 @@ public class User {
 
     public void setRole(String role) throws WrongRoleException {
         if(role.equals("user") || role.equals("admin")) {
-            throw new WrongRoleException();
+            this.role = role;
         }
-        this.role = role;
+        else throw new WrongRoleException();
     }
 }
