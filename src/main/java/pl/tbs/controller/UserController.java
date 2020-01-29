@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.tbs.model.User;
 import pl.tbs.repository.UserRepository;
+import pl.tbs.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserRepository users;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/users")
     public List<User> findUserByUsername() {
@@ -39,5 +42,10 @@ public class UserController {
     public void updateUser(@PathVariable(value = "userId") int id, @RequestBody User user) {
         user.setId(id);
         users.save(user);
+    }
+
+    @GetMapping("/login")
+    public String getUserRole(@RequestBody User user) {
+        return userService.getUserRole(user);
     }
 }
