@@ -2,14 +2,16 @@ package pl.tbs.model;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.tbs.exception.WrongRoleException;
+import static org.junit.jupiter.api.Assertions.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
+@SpringBootTest
 public class UserTest {
     User user;
 
@@ -33,6 +35,6 @@ public class UserTest {
         //when
         String testRole = "WrongRole";
         //then
-        Assertions.assertThrows(WrongRoleException.class, () -> user.setRole(testRole));
+        assertThrows(WrongRoleException.class, () -> user.setRole(testRole));
     }
 }
