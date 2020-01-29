@@ -23,7 +23,7 @@ public class User {
     private String firstName;
     private String familyName;
     private String address;
-    private int phoneNumber;
+    private Integer phoneNumber;
     @CreatedDate
     private Date created;
     @OneToMany(mappedBy = "user")
@@ -79,11 +79,11 @@ public class User {
         this.address = address;
     }
 
-    public int getPhoneNumber() {
+    public Integer getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

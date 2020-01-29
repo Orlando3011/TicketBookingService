@@ -10,14 +10,24 @@ public class UserService {
     @Autowired
     private UserRepository users;
 
-    public String getUserRole(User user) {
+    public User getUserRole(User user) {
         User foundUser = users.findByUsername(user.getUsername());
         if(foundUser != null) {
             if(foundUser.getPassword().equals(user.getPassword())) {
-                return foundUser.getRole();
+                return this.returnUserCredentials(user);
             }
             else return null;
         }
         else return null;
+    }
+
+    public User returnUserCredentials(User user) {
+        user.setCreated(null);
+        user.setReservations(null);
+        user.setAddress(null);
+        user.setFamilyName(null);
+        user.setFirstName(null);
+        user.setPhoneNumber(null);
+        return user;
     }
 }

@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String getUserRole(@RequestBody User user) {
+    public User getUserRole(@RequestBody User user) {
         return userService.getUserRole(user);
     }
 }
