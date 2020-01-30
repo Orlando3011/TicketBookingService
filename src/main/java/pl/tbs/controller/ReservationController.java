@@ -29,11 +29,12 @@ public class ReservationController {
     }
 
     @PostMapping("/reservations/users/{userId}")
-    public void addReservation(@PathVariable("userId") int id, @RequestBody Reservation reservation) {
+    public Reservation addReservation(@PathVariable("userId") int id, @RequestBody Reservation reservation) {
         User user = users.findById(id);
         reservation.setUser(user);
         reservation.setTickets(new ArrayList<>());
-        reservations.save(reservation);
+        return reservations.save(reservation);
+
     }
 
     @DeleteMapping("/reservations/{reservationId}/users/{userId}")

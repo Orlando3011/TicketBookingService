@@ -38,13 +38,13 @@ public class UserController {
         users.delete(users.findById(id));
     }
 
-    @PutMapping("/users/{usersId}")
+    @PutMapping("/users/{userId}")
     public void updateUser(@PathVariable(value = "userId") int id, @RequestBody User user) {
         user.setId(id);
         users.save(user);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public User getUserRole(@RequestBody User user) {
         return userService.getUserCredentials(user);
     }
