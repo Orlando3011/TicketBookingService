@@ -33,8 +33,8 @@ public class ReservationController {
         User user = users.findById(id);
         reservation.setUser(user);
         reservation.setTickets(new ArrayList<>());
-        return reservations.save(reservation);
-
+        reservations.save(reservation);
+        return reservation;
     }
 
     @DeleteMapping("/reservations/{reservationId}/users/{userId}")
