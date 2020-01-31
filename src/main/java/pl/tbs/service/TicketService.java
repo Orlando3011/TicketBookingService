@@ -27,8 +27,9 @@ public class TicketService {
             throw new NoTicketsLeftException();
         }
 
-        this.setTicketPrice(ticket);
         ticket.setEvent(event);
+        this.setTicketPrice(ticket);
+
         event.setTicketsAvailable(event.getTicketsAvailable() - 1);
 
         Reservation reservation = reservations.findById(reservationId);

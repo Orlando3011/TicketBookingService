@@ -23,6 +23,15 @@ public class Event {
 
     public Event() {}
 
+    public Event(int ticketsAvailable) {
+        this.ticketsAvailable = ticketsAvailable;
+    }
+
+    public Event(int ticketsAvailable, float normalTicketPrice ) {
+        this.ticketsAvailable = ticketsAvailable;
+        this.normalTicketPrice = normalTicketPrice ;
+    }
+
     public int getId() {
         return id;
     }

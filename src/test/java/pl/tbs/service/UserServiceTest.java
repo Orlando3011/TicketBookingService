@@ -24,6 +24,11 @@ public class UserServiceTest {
     UserService userService;
     User user;
 
+    String testName = "testName";
+    String wrongPass = "wrongPass";
+    String testPass = "testPass";
+    String testAddress = "testAddress";
+
     //given
     @Before
     public void createUser() {
@@ -31,21 +36,14 @@ public class UserServiceTest {
     }
 
     @Test
-    public void shouldReturnUserWithCredentials() {
-        //when
-        String testName = "name";
-        user.setUsername(testName);
-        //then
-        assertEquals(testName, userService.retrieveUserCredentials(user).getUsername());
-    }
-
-    @Test
     public void shouldRemoveUnnecessaryData() {
         //when
-        String testAddress = "testAddress";
+        user.setUsername(testName);
+        user.setPassword(testPass);
         user.setAddress(testAddress);
+        when(userRepository.findByUsername(anyString())).thenReturn(new User("testName", "testPass", "address"));
         //then
-        assertNull(userService.retrieveUserCredentials(user).getAddress());
+        assertNull(userService.getUserCredentials(user).getAddress());
     }
 
     @Test
@@ -59,8 +57,8 @@ public class UserServiceTest {
     @Test
     public void shouldReturnNullWhenPasswordIsWrong() {
         //when
-        user.setUsername("testName");
-        user.setPassword("wrongPass");
+        user.setUsername(testName);
+        user.setPassword(wrongPass);
         when(userRepository.findByUsername(anyString())).thenReturn(new User("testName", "testPass"));
         //then
         assertNull(userService.getUserCredentials(user));
@@ -69,8 +67,8 @@ public class UserServiceTest {
     @Test
     public void shouldReturnCorrectCredentials() {
         //when
-        user.setUsername("testName");
-        user.setPassword("testPass");
+        user.setUsername(testName);
+        user.setPassword(testPass);
         when(userRepository.findByUsername(anyString())).thenReturn(new User("testName", "testPass"));
         //then
         assertEquals(user.getUsername(), userService.getUserCredentials(user).getUsername());

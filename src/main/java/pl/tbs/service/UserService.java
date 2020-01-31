@@ -21,7 +21,7 @@ public class UserService {
         else return null;
     }
 
-    public User retrieveUserCredentials(User user) {
+    private User retrieveUserCredentials(User user) {
         user.setCreated(null);
         user.setReservations(null);
         user.setAddress(null);
