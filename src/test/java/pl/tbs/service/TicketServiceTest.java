@@ -46,6 +46,7 @@ public class TicketServiceTest {
     public void shouldThrowNoTicketsLeftException() throws NoTicketsLeftException {
         //when
         when(events.findById(anyInt())).thenReturn(new Event(0));
+        //then
         assertThrows(NoTicketsLeftException.class, () -> ticketService.prepareNewTicket(ticket, eventId, reservationId));
     }
 
@@ -55,7 +56,7 @@ public class TicketServiceTest {
         ticket.setDiscounted(false);
         when(events.findById(anyInt())).thenReturn(new Event(10, 20));
         when(reservations.findById(anyInt())).thenReturn(new Reservation());
-
+        //then
         assertNotNull(ticketService.prepareNewTicket(ticket, eventId, reservationId).getReservation());
     }
 
@@ -65,7 +66,7 @@ public class TicketServiceTest {
         ticket.setDiscounted(false);
         when(events.findById(anyInt())).thenReturn(new Event(10, 20));
         when(reservations.findById(anyInt())).thenReturn(new Reservation());
-
+        //then
         assertNotNull(ticketService.prepareNewTicket(ticket, eventId, reservationId).getEvent());
     }
 
